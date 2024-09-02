@@ -1,9 +1,20 @@
 let { flashcards } = require('../data')
 
-function atualizarFlashcard(id, novoFlashcard) {
-    let index = flashcards.findIndex(flash => flash.id === id);
+const atualizarFlashcard = (req, res) => {
+    const {id} = req.params;
+    const novaPergunta = req.body.pergunta;
 
-    flashcards[index] = {id, ...novoFlashcard}
+    const flashcard = flashcards.find((f) => f.id == id);
+
+    if (!flashcard) {
+        return res.status(404).send({message: 'Flashcard não encopntrado.'})
+    }
+
+flashcard.pergunta = novaPergunta;
+res.status(200).send({
+    message: 'Baralho atualizado com seucesso!',
+    flashcard: flashcard
+})
 }
 
-module.exports = atualizarFlashcard
+module.exports = atualizarFlashcard;

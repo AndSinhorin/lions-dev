@@ -1,18 +1,14 @@
 let { flashcards } = require('../data')
-const findFlashcardIndexById = require('./findFlashcardIndexById')
 
-function buscarFlashcardsPorBaralho(idBaralho) {
-    const flashByBaralhoId = flashcards.filter(flash => flash.idBaralho === idBaralho)
+function buscarFlashcardsPorBaralho(req, res) {
+    const {idBaralho} = req.params;
+    const resultados = flashcards.filter(flashcard =>
+        flashcard.idBaralho === parseInt(idBaralho));
 
-    flashByBaralhoId.forEach(flashcard => {
-        const acharIdBaralho = findFlashcardIndexById(flashcard.idBaralho)
-        
-        console.log(`
-        ID do flashcard. ${flashcard.id}
-        Pergunta. ${flashcard.pergunta}
-        Resposta. ${flashcard.resposta}
-        ID do Baralho. ${flashcard.idBaralho}`)
-    })
+        if (resultados.length > 0) {
+            res.status(200).send(resultados);
+        } else {
+            res.status(404).send({message: 'Nenhum flashcard encontrado para esse baralho.'});
+        }
 }
-
 module.exports = buscarFlashcardsPorBaralho

@@ -7,11 +7,14 @@ const novoTitulo = req.body.titulo;
 const baralho = baralhos.find((b) => b.id == id);
 
 if (!baralho) {
-return res.status(404).send({ message: 'Baralho não encontrado' });
+    return res.status(404).send({ message: 'Baralho não encontrado' });
 }
 
 baralho.titulo = novoTitulo;
-res.status(200).send({message: 'Baralho atualizado com sucesso!',baralho: baralho});
+res.status(200).send({
+    message: 'Baralho atualizado com sucesso!',
+    baralho: baralho
+});
 }
 
 module.exports = atualizarBaralho;

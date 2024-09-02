@@ -1,15 +1,7 @@
 let { flashcards } = require('../data')
 
-function listarFlashcards() {
-    flashcards.forEach(flashcard => {
-
-        console.log(`
-        ID: ${flashcard.id}
-        Pergunta: ${flashcard.pergunta}
-        Resposta: ${flashcard.resposta}
-        ID do Baralho: ${flashcard.idBaralho}
-        `)
-    }
-)}
+const listarFlashcards = (req, res) => {
+    res.status(200).send(flashcards);
+};
 
 module.exports = listarFlashcards
