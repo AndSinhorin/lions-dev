@@ -19,9 +19,9 @@ const listarFlashcards = require('./flashcard/listarFlashcards')
 //app.post é utilizado para definir rotas que lidam com requisição HTTP do tipo POST, utilizado quando quer enviar
 //dados ao servidor, como cadastros
 app.post('./baralho', criarBaralho);
-app.post('./baralho/:id', atualizarBaralho);
-app.post('./baralho', listarBaralho);
-app.post('./baralho/:id', deletarBaralho);
+app.put('./baralho/:id', atualizarBaralho);
+app.get('./baralho', listarBaralho);
+app.delete('./baralho/:id', deletarBaralho);
 
 //app.get é utilizado pra definir rota. É utilizada para responder uma requesição GET em uma aplicação web,
 //permitindo que você especifique qual ação deve ser tomada quando uma determinada rota é acessada.
